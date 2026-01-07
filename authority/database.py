@@ -4,7 +4,7 @@ from typing import Annotated, Generator
 from fastapi import Depends
 
 from .models.base import BaseModel
-from .config import Config
+from .utils.config import Config
 
 
 config = Config()
