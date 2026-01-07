@@ -4,9 +4,19 @@ from typing import Annotated, Generator
 from fastapi import Depends
 
 from .models.base import BaseModel
+from .config import Config
 
 
-engine = create_engine("")
+config = Config()
+
+
+engine = create_engine(
+    "postgresql+psycopg2://"
+    f"{config.db.user}:{config.db.passw}@"
+    f"{config.db.host}:{config.db.port}"
+    f"/{config.db.name}"
+)
+
 BaseModel.metadata.create_all(engine)
 
 
